@@ -1,0 +1,600 @@
+//variable
+$activeLink: #4ba9ff;
+$pink: #fe41c1;
+$bgGray: #252525;
+
+// reset
+* {
+  box-sizing: border-box;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  li {
+    display: block;
+  }
+}
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: sans-serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+//start
+body {
+  padding-bottom: 5em;
+  background: #0f0f0f;
+}
+
+header {
+  background: rgb(27, 26, 32);
+  color: white;
+
+  nav {
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "logo ac-button"
+      "menu menu"
+      "user user";
+    box-shadow: 0 3px 10px rgb(116 116 116 / 20%);
+  }
+
+  .logo-container {
+    grid-area: logo;
+    justify-self: baseline;
+    margin: 0.5em;
+  }
+  .menu-container {
+    grid-area: menu;
+    color: #afafaf;
+    background: #1f1f1f;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transition: 0.3s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+
+    ul li {
+      display: block;
+      padding: 1em;
+      cursor: pointer;
+      font-weight: 600;
+
+      &.active {
+        color: $activeLink;
+      }
+      &:hover {
+        background: $activeLink;
+        color: black;
+      }
+    }
+  }
+  .user-menu-container {
+    grid-area: user;
+    border-top: 1px solid #a5a5a5;
+    transition: 0.3s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+
+    a {
+      display: block;
+      padding: 1em;
+      &:hover {
+        background: $activeLink;
+        color: black;
+      }
+    }
+  }
+  .accordion-button {
+    margin: 0.5em;
+    grid-area: ac-button;
+    align-self: center;
+    justify-self: end;
+    cursor: pointer;
+
+    span {
+      display: block;
+      width: 35px;
+      height: 5px;
+      background-color: rgb(214, 214, 214);
+      margin: 6px 0;
+    }
+  }
+  .outer-coins {
+    display: none;
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+  }
+  &.active {
+    .user-menu-container,
+    .menu-container {
+      max-height: 100vh;
+    }
+  }
+}
+
+.banner-container {
+  position: relative;
+  z-index: 1;
+  background: #e8bb00;
+  padding-bottom: 1em;
+  border-bottom: 0.3em solid #882d00;
+
+  img {
+    position: absolute;
+
+    &.coins {
+      width: 100%;
+      z-index: 1;
+    }
+    &.hero {
+      width: 47%;
+      right: 0;
+      bottom: 0;
+    }
+    &.border {
+      object-fit: cover;
+      width: 100%;
+      position: static;
+    }
+  }
+  p {
+    position: absolute;
+    bottom: 4.5em;
+    left: 6em;
+    max-width: 28%;
+    font-size: 3.2vw;
+    font-weight: bold;
+
+    span {
+      color: $activeLink;
+      display: block;
+    }
+  }
+}
+
+article {
+  color: white;
+  padding: 1em 2em;
+
+  h1 {
+    font-size: 2em;
+  }
+  p {
+    line-height: 1.5em;
+  }
+
+  &.pagcor-license .content {
+    display: grid;
+    grid-template-areas:
+      "preview-img preview-title"
+      "preview-content preview-content";
+    grid-template-columns: auto 1fr;
+    text-align: left;
+
+    img {
+      grid-area: preview-img;
+      width: 12em;
+    }
+    h2 {
+      grid-area: preview-title;
+      align-self: center;
+      padding: 0 1em;
+    }
+    p {
+      grid-area: preview-content;
+    }
+  }
+
+  &.live-casino {
+    display: grid;
+    padding: 1em 0;
+
+    .content {
+      padding: 0 12em 0 2em;
+    }
+    > img {
+      width: 12em;
+      justify-self: end;
+      position: absolute;
+    }
+  }
+
+  &.layout {
+    text-align: left;
+    background: $bgGray;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    margin-bottom: 3em;
+
+    .content {
+      display: grid;
+
+      img {
+        grid-area: preview-img;
+        width: 12em;
+      }
+      .casino-slot-image {
+        grid-area: preview-img;
+        height: 6em;
+        overflow: hidden;
+
+        img {
+          margin-top: -4em;
+        }
+      }
+      h2 {
+        grid-area: preview-title;
+        align-self: center;
+        padding: 0 1em;
+        color: $pink;
+      }
+      p {
+        grid-area: preview-content;
+      }
+      .how-to-play {
+        grid-area: preview-button;
+        display: inline;
+        padding: 0.5em 1em;
+        border: 0.15em solid $activeLink;
+        border-radius: 0.7em;
+        width: 10em;
+        text-align: center;
+        align-self: center;
+      }
+    }
+    &.right {
+      &::before {
+        content: "";
+        display: block;
+        width: 0.5em;
+        height: 33em;
+        border-radius: 0.3em;
+        margin-right: 2em;
+        box-shadow: 0 0 5px $pink, 0 0 25px $pink, 0 0 50px $pink,
+          0 0 100px $pink;
+        background: white;
+        align-self: center;
+      }
+      .content {
+        grid-template-areas:
+          "preview-title preview-img"
+          "preview-content preview-content"
+          "preview-button preview-button";
+        grid-template-columns: 1fr auto;
+
+        h2 {
+          padding: 0;
+        }
+      }
+    }
+    &.left {
+      &::after {
+        content: "";
+        display: block;
+        width: 0.5em;
+        height: 33em;
+        border-radius: 0.3em;
+        margin-left: 2em;
+        box-shadow: 0 0 5px $pink, 0 0 25px $pink, 0 0 50px $pink,
+          0 0 100px $pink;
+        background: white;
+        align-self: center;
+      }
+      .content {
+        grid-template-areas:
+          "preview-img preview-title"
+          "preview-content preview-content"
+          "preview-button preview-button";
+        grid-template-columns: auto 1fr;
+
+        h2 {
+          padding-left: 1em;
+        }
+      }
+    }
+  }
+}
+
+.slider-container {
+  &.live-casino-slider {
+    display: grid;
+
+    .slick-dots {
+      position: static;
+    }
+  }
+  &.sports-betting-slider {
+    border-radius: 2.5em;
+    border: 0.175em solid white;
+    box-shadow: 0 0 3px $pink, 0 0 6px $pink, 0 0 9px $pink, 0 0 12px $pink;
+  }
+}
+
+.slider-container {
+  margin-top: 5em;
+  background: $bgGray;
+  padding: 1em 2em;
+
+  .slick-dots {
+    bottom: -2.5em;
+    left: 0;
+
+    li {
+      background: #d9d9d9;
+      width: 2.5em;
+      height: 0.3em;
+      border-radius: 1em;
+
+      &.slick-active {
+        background: $pink;
+      }
+      button {
+        display: none;
+      }
+    }
+  }
+}
+
+//
+@media only screen and (min-width: 768px) {
+  header {
+    nav {
+      grid-template-columns: auto auto;
+      grid-template-areas:
+        "logo user"
+        "menu menu";
+    }
+
+    .logo-container {
+      justify-self: baseline;
+    }
+    .menu-container {
+      max-height: none;
+      text-align: center;
+
+      ul li {
+        display: inline-block;
+        padding: 1em;
+
+        &:hover {
+          color: #4ba9ff;
+          background: none;
+        }
+      }
+    }
+    .user-menu-container {
+      max-height: none;
+      border: none;
+      justify-self: end;
+      align-self: center;
+
+      a {
+        display: inline-block;
+        padding: 0.5em 2em;
+        border-radius: 0.5em;
+        border: 0.175em solid white;
+        margin: 0 0.5em;
+        min-width: 5.5em;
+        text-align: center;
+
+        &.active {
+          background: $activeLink;
+          color: black;
+          border-color: $activeLink;
+        }
+      }
+    }
+    .accordion-button {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  header {
+    display: grid;
+
+    .banner-container {
+      margin-top: -7em;
+    }
+  }
+  article {
+    .content {
+      h2 {
+        font-size: 2em;
+      }
+      p {
+        font-size: 1.2em;
+      }
+    }
+    &.pagcor-license {
+      .content {
+        grid-template-areas:
+          "preview-img preview-title"
+          "preview-img preview-content";
+
+        img {
+          width: 24em;
+          align-self: center;
+        }
+        h2 {
+          align-self: auto;
+          padding: 0;
+        }
+      }
+    }
+    &.live-casino {
+      > img {
+        width: 18em;
+        z-index: 2;
+        margin-top: 3em;
+      }
+      .content {
+        padding: 0 21em 0 1em;
+      }
+      .slider-container {
+        padding-right: 20em;
+      }
+    }
+    &.layout {
+      padding: 1em 0em;
+      background: none;
+
+      .content {
+        img {
+          width: 50vw;
+          align-self: center;
+        }
+      }
+      &.right {
+        &::before {
+          margin-left: 2em;
+          margin-right: auto;
+          position: absolute;
+        }
+        .content {
+          background: $bgGray;
+          padding: 2em 4em;
+          width: 75vw;
+          border-radius: 0 3em 3em 0em;
+          grid-template-areas:
+            "preview-title preview-img"
+            "preview-content preview-img"
+            "preview-button preview-img";
+          grid-template-columns: auto 10em;
+
+          .casino-slot-image {
+            height: auto;
+            overflow: unset;
+            align-self: center;
+
+            img {
+              margin: 0;
+            }
+          }
+        }
+      }
+      &.left {
+        &::after {
+          margin-left: auto;
+          margin-right: 2em;
+          position: absolute;
+          right: 0;
+        }
+        .content {
+          background: $bgGray;
+          padding: 2em 4em;
+          width: 75vw;
+          border-radius: 3em 0 0 3em;
+          grid-template-areas:
+            "preview-img preview-title"
+            "preview-img preview-content"
+            "preview-img preview-button";
+          grid-template-columns: 10em auto;
+          justify-self: end;
+
+          img {
+            margin-right: 5em;
+            width: 45vw;
+            align-self: center;
+            justify-self: end;
+          }
+        }
+      }
+    }
+    .sports-betting {
+      padding: 0 7em;
+    }
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  body {
+    max-width: 94em;
+    margin: 0 auto;
+  }
+
+  header {
+    nav {
+      background: #1f1f1f;
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas: "logo menu user";
+      width: 90%;
+      margin: 2.5em auto 0;
+      padding: 0.8em;
+      border-radius: 2.2em;
+    }
+    .menu-container {
+      align-self: center;
+      ul li {
+        padding: 1em 0.6em;
+      }
+    }
+    .banner-container {
+      margin-top: -10.5em;
+
+      p {
+        bottom: 3.8em;
+        max-width: 31%;
+        font-size: 3.4vw;
+      }
+      .coins {
+        display: none;
+      }
+    }
+    .outer-coins {
+      display: block;
+      max-width: 94em;
+    }
+  }
+  article {
+    &.layout {
+      .content {
+        img {
+          width: 50vw;
+        }
+      }
+      &.right {
+        .content {
+          grid-template-columns: auto 10em;
+        }
+      }
+      &.left {
+        .content {
+          grid-template-columns: 10em auto;
+        }
+      }
+    }
+    &.sports-betting {
+      width: 80%;
+      margin: 0 auto;
+
+      .sports-betting-slider {
+        padding: 2em 5em;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1540px) {
+  header {
+    .banner-container {
+      p {
+        bottom: 3.6em;
+        left: 5.5em;
+        max-width: 31%;
+        font-size: 3.3em;
+      }
+    }
+  }
+}
